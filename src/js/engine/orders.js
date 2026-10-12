@@ -9,6 +9,7 @@ import { parseRef, refOf, findFeature, distance, neighbours, colRow, idxOf, find
 import { friendlyUnits, liveUnit, addDecision, personLabel } from './state.js';
 import { TASKS } from './schema.js';
 import { lightAt } from './clock.js';
+import { LINE_FEATURES } from '../data/terrain.js';
 import { clamp, str } from './util.js';
 
 const ORD = { first: '1st', second: '2nd', third: '3rd', fourth: '4th', fifth: '5th', sixth: '6th', one: '1', two: '2', three: '3', four: '4' };
@@ -92,7 +93,7 @@ function findUnits(state, clause, aliases) {
 }
 
 /** Find a target square in a clause: a grid square, an objective, a control measure, a feature, an enemy contact, or a relative direction. */
-export function findTarget(state, clause, unitId = null) {
+export function findTarget(state, clause, unitId = null, task = null) {
   const n = state.grid.n;
   const raw = String(clause);
   const cell = findGridRef(n, raw);
@@ -114,7 +115,10 @@ export function findTarget(state, clause, unitId = null) {
   const words = low.replace(/\b(to|toward|towards|on|at|onto|into|the|behind|along|through|via|in|of|and|order|so|that)\b/g, ' ').split(/\s+/).filter(w => w.length > 2);
   for (let len = 4; len >= 1; len--) for (let i = 0; i + len <= words.length; i++) {
     const f = findFeature(state.grid, words.slice(i, i + len).join(' '));
-    if (f) return { cell: nearestCell(state, f.cells, unitId), how: f.name, feature: f };
+    if (!f) continue;
+    // Attacking or shooting at a place aims at its middle; moving to it stops at the near edge.
+    const aim = ['assault', 'suppress', 'counterattack', 'breach', 'recon', 'fire'].includes(task) && f.cells.length > 1 && f.cells.includes(f.label) && !LINE_FEATURES.includes(f.type);
+    return { cell: aim ? f.label : nearestCell(state, f.cells, unitId), how: f.name, feature: f };
   }
   const generic = [['woods', /\b(tree ?line|treeline|woods|wood|forest|trees|jungle|tree line)\b/], ['hedgerow', /\b(hedge|hedgerow|hedges|bocage)\b/], ['village', /\b(farm|farmhouse|village|houses|buildings|compound|hamlet)\b/], ['urban', /\b(town|city|streets)\b/], ['rocky', /\b(rocks|ridge|high ground|crest)\b/]];
   for (const [ty, re] of generic) if (re.test(low)) {
@@ -193,7 +197,7 @@ export function parseOrders(state, text) {
   for (const c of all) {
     const low = normalise(c);
     if (FIRE_RE.test(c)) {
-      const tgt = findTarget(state, c, 'u0');
+      const tgt = findTarget(state, c, 'u0', 'fire');
       const kind = /\bsmoke\b/i.test(c) ? 'smoke' : /\billum/i.test(c) ? 'illum' : 'HE';
       const assetType = /\b(mortar)/i.test(c) ? 'mortar' : /\b(naval|ship)/i.test(c) ? 'naval' : /\b(air ?strike|cas|aircraft|planes?|jabo|fighter|bomb)/i.test(c) ? 'air' : /\b(gunships?|helicopters?|helos?|cobras?|apaches?)/i.test(c) ? 'helicopter' : /\bdrone/i.test(c) ? 'drone' : /\b(arty|artillery|guns|battery|barrage|stonk|howitzers?)/i.test(c) ? 'artillery' : null;
       if (tgt) { out.fire = { cell: tgt.cell, how: tgt.how, kind, assetType, method: /\b(fire for effect|ffe)\b/i.test(c) ? 'ffe' : 'adjust', clause: c }; continue; }
@@ -204,7 +208,7 @@ export function parseOrders(state, text) {
     if (!unitIds.length && task && lastUnits && !/\b(i|we)\b/.test(low)) unitIds = lastUnits;
     if (!unitIds.length || !task) { out.unparsed.push(c); continue; }
     lastUnits = unitIds;
-    const tgt = findTarget(state, c, unitIds[0]);
+    const tgt = findTarget(state, c, unitIds[0], task);
     if (!tgt && !['halt', 'dig_in', 'defend', 'hold', 'withdraw', 'suppress'].includes(task)) { out.unparsed.push(c); continue; }
     if (task === 'reinforce' && !tgt) {
       const other = findUnits(state, c.replace(/^[^,]*,/, ''), aliases).find(x => !unitIds.includes(x));

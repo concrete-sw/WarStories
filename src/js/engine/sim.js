@@ -264,6 +264,8 @@ function fires(state, A, now) {
   const o = A.order;
   if (A.posture === 'broken' || A.ammo <= 0 || A.strength <= 0 || UNIT_TYPES[A.type]?.indirect && A.side === 'enemy') return false;
   if (A.holdFire && now - A.engagedAt > state.scale.tick) return false;
+  // Before H-hour friendly troops keep their positions hidden: they return fire, or fire when ordered to.
+  if (A.side === 'friendly' && state.phase === 'planning' && !A.weaponsFree && !(o?.status === 'active' && ['suppress', 'assault', 'support', 'counterattack', 'breach'].includes(o.task))) return now - A.engagedAt <= state.scale.tick;
   if (A.side === 'enemy' && A.posture === 'withdrawing') return now - A.engagedAt <= state.scale.tick;
   if (!o || o.status !== 'active') return true;
   if (o.task === 'move' || o.task === 'recon' || o.task === 'patrol') return now - A.engagedAt <= state.scale.tick;

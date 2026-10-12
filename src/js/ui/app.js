@@ -217,8 +217,8 @@ export class App {
   autosave() {
     if (!this.state) return;
     this.lastSave = Date.now();
+    // Manual slots are checkpoints: only "Save here" writes them.
     store.saveSlot(0, this.state);
-    if (this.slot && !this.state.settings.ironman) store.saveSlot(this.slot, this.state);
   }
   scheduleSave() { clearTimeout(this._saveT); this._saveT = setTimeout(() => this.autosave(), 800); }
   saveTo(slot) { if (this.state.settings.ironman) { toast('Ironman games save to the autosave only.', 'warn'); return; } this.slot = slot; store.saveSlot(slot, this.state); toast(`Saved to slot ${slot}.`, 'info'); this.refresh('settings'); }
@@ -333,7 +333,7 @@ export class App {
     if (t === 'sitrep') { addLog(this.state, 'system', sitrepText(this.state, this.ctx), 'system'); this.wm.refreshAll(); return true; }
     if (/^write home$/.test(t)) { this.writeHome(); return true; }
     if (/^check on the men$/.test(t)) { this.act({ type: 'checkmen' }); return true; }
-    if (/^(save)$/.test(t)) { this.autosave(); toast('Saved.', 'info'); return true; }
+    if (/^(save)$/.test(t)) { this.autosave(); if (this.slot && !this.state.settings.ironman) this.saveTo(this.slot); else toast('Saved.', 'info'); return true; }
     const talk = raw.replace(/^\//, '').match(/^talk to ([\w'.-]+(?: [\w'.-]+)?)[,:]?\s*(.*)$/i);
     if (talk) {
       const who = talk[1].toLowerCase();

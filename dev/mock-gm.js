@@ -75,7 +75,8 @@ function reply(text, msgs, req) {
   const w = said(text);
   const cas = casualtyLine(text);
   const casNote = cas ? `\n\n${cas.split(';')[0].split(' — ')[0].trim()} is hit. Somebody yells for a medic who is not there.` : '';
-  const units = ids(text, /"id":"(u\d)"/g);
+  const all = msgs.map(m => (typeof m.content === 'string' ? m.content : JSON.stringify(m.content))).join('\n');
+  const units = ids(all, /"id":"(u\d)"/g);
   if (text.includes('[OPENING')) {
     const batt = text.includes('Anvil');
     return J(batt ? 'The TOC smells of diesel and coffee. On the map board the S2 has drawn three red arrows; the S3 has drawn two. "Main effort comes down the B27," Raman says. "Through Hünfeld," Brandt says, louder. The radios hiss. Somewhere east a flare goes up and hangs.' : 'Rain drips off the hedgerow. Brennan crouches beside you in the sunken lane, watch in his palm. "Forty minutes, Sarge." Russo is cleaning the BAR for the third time. Kowalczyk wants to know which hedgerow is the middle one. Nobody has an answer that makes them feel better.',

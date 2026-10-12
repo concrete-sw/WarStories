@@ -90,8 +90,8 @@ export function preResolve(state, action, ctx) {
       const r = issueOrder(state, uid, { task: o.task, cell: o.cell, how: o.how, clause: o.clause, quality: o.quality, intent }, ctx);
       if (r) { if (extraDelay) { r.order.startAt += extraDelay; r.order.status = 'pending'; r.delay += extraDelay; } pre.issued.push(r); }
     }
-    if (/\b(hold (your )?fire|cease fire|check (your )?fire|don'?t shoot|weapons tight)\b/i.test(text)) { for (const u of friendlyUnits(state)) u.holdFire = true; pre.notes.push('HOLD FIRE given: units fire only if fired upon.'); }
-    if (/\b(open fire|weapons free|fire at will)\b/i.test(text)) { for (const u of friendlyUnits(state)) u.holdFire = false; pre.notes.push('Weapons free.'); }
+    if (/\b(hold (your )?fire|cease fire|check (your )?fire|don'?t shoot|weapons tight)\b/i.test(text)) { for (const u of friendlyUnits(state)) { u.holdFire = true; u.weaponsFree = false; } pre.notes.push('HOLD FIRE given: units fire only if fired upon.'); }
+    if (/\b(open fire|weapons free|fire at will)\b/i.test(text)) { for (const u of friendlyUnits(state)) { u.holdFire = false; u.weaponsFree = true; } pre.notes.push('Weapons free.'); }
     if (parsed.fire) {
       const q = clamp(0.35 + (/\b(adjust|fire for effect|ffe|over)\b/i.test(text) ? 0.15 : 0) + (/\b[A-T]\d{1,2}\b/.test(parsed.fire.clause) ? 0.2 : 0) + (/\b(infantry|mg|machine gun|tanks?|bunker|trench|position|troops|vehicles?)\b/i.test(parsed.fire.clause) ? 0.1 : 0), 0, 1);
       const r = requestFire(state, { cell: parsed.fire.cell, assetType: parsed.fire.assetType, kind: parsed.fire.kind, method: parsed.fire.method, quality: q }, ctx);

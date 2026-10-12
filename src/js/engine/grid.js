@@ -119,8 +119,9 @@ export function buildGrid(spec, seed = 'grid') {
       out.cells = [...new Set(area)];
       if (!['hill', 'ridge'].includes(type)) for (const j of out.cells) applyFeature(cells[j], type, id);
       else for (const j of out.cells) cells[j].features.push(id);
-      const cen = centroid(n, out.cells);
-      out.label = cen;
+      // Label (and aim point) is the declared centre when there is one, else the centroid.
+      const at = f.at ? parseRef(n, f.at) : -1;
+      out.label = at >= 0 && out.cells.includes(at) ? at : centroid(n, out.cells);
     }
     if (out.cells.length) features.push(out);
   }

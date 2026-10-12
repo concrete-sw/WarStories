@@ -71,7 +71,7 @@ let p = parseOrders(s1, 'BAR team, base of fire on I9; Able team, bound left to 
 ok(p.orders.length === 2 && p.orders[0].unitIds[0] === 'u2' && p.orders[0].task === 'suppress' && refOf(n, p.orders[0].cell) === 'I9', 'BAR team suppress I9');
 ok(p.orders[1].unitIds[0] === 'u1' && p.orders[1].task === 'move' && refOf(n, p.orders[1].cell) === 'G10' && p.orders[1].quality >= 2, 'Able team move G10 with a purpose scores higher');
 p = parseOrders(s1, 'Brennan, assault the farm');
-ok(p.orders[0]?.unitIds[0] === 'u1' && p.orders[0]?.task === 'assault' && refOf(n, p.orders[0].cell)[0] === 'I', 'a leader\'s name and a feature name work');
+ok(p.orders[0]?.unitIds[0] === 'u1' && p.orders[0]?.task === 'assault' && refOf(n, p.orders[0].cell) === 'I5', 'a leader\'s name and a feature name work, aimed at the farm itself');
 p = parseOrders(s1, 'I move to H12');
 ok(p.orders[0]?.unitIds[0] === 'u0', 'orders to yourself');
 p = parseOrders(s1, 'mortars on I9, fire for effect');

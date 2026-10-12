@@ -34,7 +34,7 @@ export function registerMap(app, { S, reg, readOnly }) {
       if (app.draft) append(body, h('div', { class: 'row tight' }, tag(`${app.draft.type} ${app.draft.name}: tap squares (${app.draft.cells.length})`, 'info'), btn('Finish', () => finishDraft(app), 'small', { disabled: !app.draft.cells.length }), btn('Cancel', () => { app.draft = null; app.refresh('map'); }, 'small ghost')));
       const wrapSvg = h('div', { class: 'map-svg-wrap grow' });
       svg = renderMapSVG(s, {
-        view, selCell: sel.cell, selUnit: sel.unit || sel.contact, draft: app.draft,
+        view, selCell: sel.cell, selUnit: sel.unit || sel.contact, draft: app.draft, picking: !!(app.pickMode || app.draft),
         onCell: cell => onCell(app, s, cell), onUnit: id => { app.sel = { unit: id, cell: s.units[id]?.cell ?? null }; app.refresh('map'); },
         onContact: id => { app.sel = { contact: id, cell: s.picture.contacts[id]?.cell ?? null }; app.refresh('map'); },
         onLongPress: cell => { if (!ro) longPress(app, s, cell); }

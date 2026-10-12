@@ -35,7 +35,7 @@ function defs(svg, dark) {
 }
 
 /**
- * Render the map. opts: { view (object kept by the caller), selCell, selUnit, onCell, onUnit, onLongPress, onView, draft (cells being drawn),
+ * Render the map. opts: { view (object kept by the caller), selCell, selUnit, onCell, onUnit, onLongPress, onView, draft (cells being drawn), picking (taps on symbols pick the square),
  * showTruth, at (minute for AAR replay), compact }
  */
 export function renderMapSVG(state, opts = {}) {
@@ -239,8 +239,9 @@ function wireInteraction(svg, state, v, opts) {
     if (pointers.size === 0) {
       if (press) clearTimeout(press.t);
       if (was === 1 && !moved && !(press && press.fired) && e.type === 'pointerup') {
-        if (press?.unit) opts.onUnit?.(press.unit);
-        else if (press?.contact) opts.onContact?.(press.contact);
+        // While picking a square or drawing, a tap on a symbol picks the square under it.
+        if (press?.unit && !opts.picking) opts.onUnit?.(press.unit);
+        else if (press?.contact && !opts.picking) opts.onContact?.(press.contact);
         else { const cell = cellAt(e.clientX, e.clientY); if (cell >= 0) opts.onCell?.(cell); }
       }
       drag = null; press = null;
