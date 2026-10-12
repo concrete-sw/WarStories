@@ -1,0 +1,13 @@
+{
+  "name": "warstories",
+  "version": "1.0.0",
+  "private": true,
+  "description": "War Stories: an AI-run military command game in a single HTML file.",
+  "type": "module",
+  "scripts": {
+    "build": "node dev/build.js",
+    "mock": "node dev/mock-gm.js",
+    "check": "node dev/engine-check.mjs",
+    "test": "node dev/build.js && node dev/engine-check.mjs && node dev/playthrough.mjs"
+  }
+}

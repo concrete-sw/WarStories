@@ -1,0 +1,128 @@
+{
+  "title": "The Crossroads at Les Forges",
+  "codename": "IRON HARROW",
+  "setting": {
+    "place": "the bocage north-east of Carentan, Normandy, France",
+    "date": "1944-06-14",
+    "startTime": "05:10",
+    "latitude": 49.3,
+    "weather": "low overcast, a fine drizzle, the ground greasy",
+    "weatherCode": "overcast",
+    "warSoFar": "Eight days after the landings the beachhead is a narrow strip of Normandy and the hedgerows have stopped everyone cold. Carentan fell two days ago and the Germans counterattacked it yesterday with assault guns and paratroopers; the line held, just. Every field is a box walled by banks of earth and roots ten feet high, and every corner of every field can hide a machine gun. Your regiment has lost a third of its riflemen since D-Day. Replacements arrive at night and are dead or wounded by noon. Nobody knows how many Germans are in front of you: paratroopers, the rumour says, and some SS assault guns. Nobody has slept more than three hours since the sixth.",
+    "unitHistory": "2nd Squad, 1st Platoon, Easy Company jumped into Normandy scattered across six miles and fought its way back together in two days. It has lost four men, including its old squad leader, Sgt. Murray, killed at the causeway. The men are good, tired and superstitious, and they do not yet know whether you are lucky.",
+    "historicalOutcome": "In mid-June 1944 American airborne and infantry units pushed out from Carentan into the bocage against German paratroopers and the 17th SS Panzergrenadier Division, gaining a few hundred yards a day at great cost, until new tactics and the July breakout ended the hedgerow war."
+  },
+  "terrain": {
+    "size": 16,
+    "base": "field",
+    "features": [
+      { "id": "f1", "name": "the sunken-lane hedgerow", "type": "hedgerow", "line": ["A12", "P12"] },
+      { "id": "f2", "name": "the middle hedgerow", "type": "hedgerow", "line": ["A9", "P9"] },
+      { "id": "f3", "name": "the long hedgerow", "type": "hedgerow", "line": ["F3", "F11"] },
+      { "id": "f4", "name": "the Carentan road", "type": "road", "line": ["A10", "H6", "P5"] },
+      { "id": "f5", "name": "the farm track", "type": "track", "line": ["H2", "H6", "H16"] },
+      { "id": "f6", "name": "the Les Forges crossroads", "type": "crossroads", "at": "H6" },
+      { "id": "f7", "name": "Les Forges farm", "type": "farm", "at": "I5", "radius": 1 },
+      { "id": "f8", "name": "the apple orchard", "type": "orchard", "area": "B5:D7" },
+      { "id": "f9", "name": "Bois de la Haye", "type": "woods", "area": "L9:O12" },
+      { "id": "f10", "name": "the Douve marsh", "type": "marsh", "area": "A1:E2" },
+      { "id": "f11", "name": "Hill 30", "type": "hill", "at": "N3", "radius": 2, "elevation": 2 }
+    ]
+  },
+  "mission": {
+    "type": "attack",
+    "statement": "At 0550, 2nd Squad attacks north from the sunken lane to seize OBJ RED, the Les Forges crossroads and farm, in order to open the farm track for the battalion's advance on Hill 30.",
+    "higherIntent": "Captain Wheeler wants the crossroads in American hands before the Germans can bring up assault guns on the Carentan road. End state: the crossroads held, the farm cleared, the track open.",
+    "objective": { "name": "OBJ RED (the crossroads and the farm)", "cells": ["H6", "I5"] },
+    "targetUnits": [],
+    "hHourMinutes": 40,
+    "nltMinutes": 170,
+    "endMinutes": 270,
+    "constraints": ["Stay east of the long hedgerow: 1st Squad has the ground to the west.", "No fire into the farm until it is confirmed held by the enemy; a French family was seen there yesterday."],
+    "roe": "Engage identified enemy. Civilians in the farm are to be protected. Prisoners go back to the platoon CP.",
+    "controlMeasures": [
+      { "type": "LD", "name": "LD (the sunken lane)", "cells": ["A12", "P12"] },
+      { "type": "PL", "name": "PL BLUE (the middle hedgerow)", "cells": ["A9", "P9"] },
+      { "type": "TRP", "name": "TRP 01", "cells": ["I9"] }
+    ],
+    "warno": "WARNING ORDER. 2nd Squad attacks at 0550 to seize the crossroads at Les Forges. Ammo, water and grenades drawn by 0530. Leaders to the platoon CP at 0515. No tanks. 60 mm mortars on call through the platoon. Expect machine guns in the hedgerows.",
+    "opord": {
+      "situation": "Enemy: German paratroopers, perhaps a reinforced squad, dug into the hedgerows and the farm at Les Forges with at least one MG 42; a mortar somewhere behind Hill 30; assault guns reported on the Carentan road. Friendly: 1st Squad attacks on your left, west of the long hedgerow; 3rd Squad is platoon reserve in the sunken lane. Civilians: a farming family may still be in the cellar at Les Forges. Weather: drizzle, low cloud, sunrise about 0600.",
+      "mission": "2nd Squad attacks at 0550 to seize OBJ RED, the Les Forges crossroads and farm, in order to open the farm track for the battalion.",
+      "execution": "Intent: get onto the crossroads fast before the Germans can reinforce, and hold it. Concept: one team fixes the machine gun at the middle hedgerow while the others work around it; the BAR team supports. Cross PL BLUE by 0650. Report every hedgerow crossed. Platoon 60 mm mortars on call; TRP 01 is the hedgerow corner at I9.",
+      "sustainment": "Two bandoliers and four grenades a man; BAR ammunition is short. Water: one canteen each, refill at the platoon CP. Wounded to the CCP in the sunken lane at H13; aidmen are with 1st Squad.",
+      "commandSignal": "Squad leader moves with the BAR team. Platoon leader is Easy One-Six on the SCR-536, the runner otherwise. Succession: Sgt. Brennan, then Cpl. Kowalczyk. Signal for the assault: two green flares; signal to stop the mortars: one red."
+    },
+    "success": "The crossroads and the farm held, the track open, the squad able to fight.",
+    "partial": "Part of the objective taken, or taken late, or taken at a cost that leaves the squad unable to hold it.",
+    "failure": "The squad stopped short of PL BLUE or thrown back to the sunken lane."
+  },
+  "higher": { "unit": "1st Platoon, Easy Company, 2nd Battalion, 507th Parachute Infantry", "commander": { "name": "1st Lt. Ray Doyle", "callsign": "Easy One-Six", "temperament": "young, brave, under pressure from the company and passing all of it down" } },
+  "friendly": {
+    "unitName": "2nd Squad, 1st Platoon, Easy Company, 2nd Battalion, 507th Parachute Infantry",
+    "callsign": "Easy One-Two",
+    "hqCell": "H14",
+    "units": [
+      { "id": "u1", "name": "Able Team", "short": "A TM", "callsign": "Able", "type": "infantry", "size": "team", "strength": 4, "quality": "veteran", "cell": "G13", "posture": "cover" },
+      { "id": "u2", "name": "BAR Team", "short": "BAR", "callsign": "Bar", "type": "infantry", "size": "team", "strength": 3, "quality": "regular", "cell": "H13", "posture": "cover" },
+      { "id": "u3", "name": "Baker Team", "short": "B TM", "callsign": "Baker", "type": "infantry", "size": "team", "strength": 4, "quality": "regular", "cell": "I13", "posture": "cover" }
+    ],
+    "leaders": [
+      { "id": "L1", "unit": "u1", "name": "Walt Brennan", "rank": "Sgt", "role": "assistant squad leader, Able Team", "personality": "steady, laconic, old for a paratrooper at twenty-nine", "voice": "short sentences, West Virginia, never raises his voice", "competence": 4, "initiative": 4, "secret": "he thinks he should have been made squad leader", "nickname": "Pop", "hometown": "Wheeling WV", "detail": "carries his father's pocket watch", "breakingPoint": "losing another squad leader" },
+      { "id": "L2", "unit": "u2", "name": "Tony Russo", "rank": "Cpl", "role": "BAR gunner and team leader", "personality": "loud, funny, very good with the BAR", "voice": "Brooklyn, fast, swears like breathing", "competence": 3, "initiative": 3, "secret": "his hands have started shaking when it is quiet", "nickname": "Brooklyn", "hometown": "Brooklyn NY", "detail": "owes half the squad money", "breakingPoint": "artillery" },
+      { "id": "L3", "unit": "u3", "name": "Eddie Kowalczyk", "rank": "Cpl", "role": "Baker Team leader", "personality": "careful, by the book, a little slow", "voice": "Polish-American, Chicago, polite even under fire", "competence": 2, "initiative": 2, "secret": "he got lost on D-Day and was alone for a day and a half", "nickname": "Ski", "hometown": "Chicago IL", "detail": "writes to his mother every day", "breakingPoint": "being blamed" }
+    ],
+    "notables": [
+      { "unit": "u1", "name": "Lewis Hale", "role": "rifleman", "trait": "devout, prays before every move", "nickname": "Preacher", "hometown": "Macon GA", "detail": "was a seminarian before the war", "breakingPoint": "killing at close range" },
+      { "unit": "u3", "name": "Danny Ortiz", "role": "scout", "trait": "sharp-eyed, first to spot movement", "nickname": "Kid", "hometown": "El Paso TX", "detail": "lied about his age to enlist", "breakingPoint": "losing his buddy" },
+      { "unit": "u2", "name": "Morris Katz", "role": "assistant BAR man", "trait": "former schoolteacher", "nickname": "Professor", "hometown": "Cleveland OH", "detail": "plays chess by mail with his old teacher", "breakingPoint": "the screams of the wounded" }
+    ],
+    "staff": [],
+    "adjacent": [ { "name": "1st Squad", "where": "left, west of the long hedgerow", "callsign": "Easy One-One" }, { "name": "3rd Squad", "where": "behind, in the sunken lane", "callsign": "Easy One-Three" } ],
+    "support": [
+      { "id": "a1", "type": "mortar", "name": "1st Platoon 60 mm mortars", "callsign": "Easy One-Four", "missions": 5, "availableFromMinutes": 0, "availableToMinutes": 600, "responseMinutes": 5 },
+      { "id": "a2", "type": "mortar", "name": "battalion 81 mm mortars", "callsign": "Cobalt Mortars", "missions": 3, "availableFromMinutes": 60, "availableToMinutes": 600, "responseMinutes": 9 }
+    ]
+  },
+  "enemy": {
+    "description": "A reinforced squad of German paratroopers (Fallschirmjäger) from a regiment bled white at Carentan: young, skilled, short of everything but ammunition for the MG 42.",
+    "commander": { "name": "Feldwebel Kurt Brenner", "temperament": "a veteran who reads the ground well", "mistake": "he commits his reserve to a counterattack as soon as the crossroads falls, across open ground, without waiting for the assault gun" },
+    "intent": "Hold the crossroads to keep the Carentan road open for the assault guns, then counterattack anything that gets onto it.",
+    "plan": "The MG 42 at the corner of the middle hedgerow (I9) stops the attack in the open field; riflemen in the farm cover the crossroads; the mortar behind Hill 30 drops on anything bunched up. If the farm falls the reserve in the sunken road at K4 counterattacks at once. An assault gun comes up the Carentan road around 0710. A dummy position in the orchard draws attention to the west.",
+    "units": [
+      { "id": "e1", "name": "MG 42 position at the hedgerow corner", "type": "mg", "size": "team", "strength": 3, "quality": "veteran", "cell": "I9", "posture": "dug_in", "decoy": false, "reaction": "delay", "fallback": "I6", "orders": [ { "atMinutes": 0, "task": "defend", "target": "I9" }, { "atMinutes": 140, "task": "withdraw", "target": "I6" } ] },
+      { "id": "e2", "name": "rifle group in the farm", "type": "infantry", "size": "squad", "strength": 7, "quality": "veteran", "cell": "I5", "posture": "dug_in", "decoy": false, "reaction": "hold", "fallback": "K3", "orders": [ { "atMinutes": 0, "task": "defend", "target": "I5" } ] },
+      { "id": "e3", "name": "dug-in position in the orchard", "type": "infantry", "size": "team", "strength": 0, "quality": "regular", "cell": "C6", "posture": "dug_in", "decoy": true, "reaction": "hold", "fallback": null, "orders": [] },
+      { "id": "e4", "name": "reserve group in the sunken road", "type": "infantry", "size": "squad", "strength": 6, "quality": "regular", "cell": "K4", "posture": "cover", "decoy": false, "reaction": "counterattack", "fallback": "M2", "orders": [ { "atMinutes": 0, "task": "defend", "target": "K4" } ] },
+      { "id": "e5", "name": "mortar team behind Hill 30", "type": "mortar", "size": "team", "strength": 3, "quality": "regular", "cell": "N2", "posture": "dug_in", "decoy": false, "reaction": "hold", "fallback": null, "orders": [ { "atMinutes": 0, "task": "defend", "target": "N2" } ] },
+      { "id": "e6", "name": "StuG III assault gun", "type": "armor", "size": "team", "strength": 4, "vehicles": 1, "quality": "veteran", "cell": "P5", "posture": "halted", "decoy": false, "reinforcement": true, "reaction": "hold", "fallback": "P5", "orders": [ { "atMinutes": 120, "task": "move", "target": "K5" } ] }
+    ]
+  },
+  "people": [
+    { "id": "c1", "name": "the Lefèvre family", "kind": "civilian", "cell": "I5", "count": 4, "description": "a farmer, his wife, their daughter and the grandmother, in the cellar of the farm", "knows": "where the Germans sleep and that the gun on the road comes every morning", "wants": "to stay alive and keep their cows" }
+  ],
+  "events": [
+    { "atMinutes": 15, "kind": "higher", "text": "The platoon runner arrives breathless: H-hour stands, no tanks, and the 81s will not be ready until after six.", "visible": true, "urgent": false, "effects": {} },
+    { "atMinutes": 55, "kind": "fire_support", "text": "A 60 mm round from your own platoon's mortars lands short, in the sunken lane behind you.", "visible": true, "urgent": true, "effects": {} },
+    { "atMinutes": 90, "kind": "civilian", "text": "A girl runs out of the farm toward the crossroads waving a white tablecloth.", "visible": true, "urgent": false, "effects": { "civilians": { "cell": "H6", "count": 1, "name": "the Lefèvre girl" } } },
+    { "atMinutes": 115, "kind": "enemy", "text": "Engine noise to the east: something heavy and tracked on the Carentan road.", "visible": true, "urgent": true, "effects": { "spawnEnemy": "e6", "spawnCell": "P5" } },
+    { "atMinutes": 150, "kind": "higher", "text": "Easy Six on the platoon net: battalion needs the crossroads by 0800, no excuses.", "visible": true, "urgent": false, "effects": { "nltMinutes": 170 } },
+    { "atMinutes": 190, "kind": "weather", "text": "The drizzle thickens into steady rain; the far hedgerows fade into grey.", "visible": true, "urgent": false, "effects": { "weather": "rain" } }
+  ],
+  "intel": [
+    { "atMinutes": 0, "source": "higher", "reliability": "B2", "text": "Enemy machine gun reported at the corner of the middle hedgerow, near I9.", "about": "e1", "cell": "I9", "truthful": true },
+    { "atMinutes": 0, "source": "higher", "reliability": "C3", "text": "A dug-in enemy position in the apple orchard at C6 covers the road from the west.", "about": "e3", "cell": "C6", "truthful": false },
+    { "atMinutes": 25, "source": "civilian", "reliability": "D2", "text": "A farmer who crossed the lines last night says there are 'many soldiers' in the farm at Les Forges and that a 'cannon on tracks' comes every morning by the Carentan road.", "about": "e2", "cell": "I5", "truthful": true },
+    { "atMinutes": 70, "source": "patrol", "reliability": "C3", "text": "1st Squad reports the farm track is clear all the way to the crossroads.", "about": null, "cell": "H7", "truthful": false }
+  ],
+  "deceptions": [
+    "The orchard position at C6 is a dummy: turned earth and a few helmets on sticks, to pull the attack west.",
+    "1st Squad's report that the farm track is clear is wrong: the MG 42 at I9 covers the track from the flank.",
+    "The farm looks lightly held from the south; the reserve in the sunken road at K4 is out of sight."
+  ],
+  "complications": [
+    "The 81 mm mortars are not ready until after 0610.",
+    "A French family is in the farm cellar.",
+    "An assault gun arrives on the Carentan road around 0705."
+  ]
+}

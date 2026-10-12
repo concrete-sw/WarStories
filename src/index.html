@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>War Stories · Chain of Command</title>
+<meta name="description" content="War Stories: a military command roleplay game run by an AI Game Master with your own API key. Lead a squad in the mud or a corps from a château.">
+<meta name="theme-color" content="#2b2418">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="War Stories">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%232b2418'/%3E%3Cpath d='M32 6 L56 16 V34 C56 48 44 56 32 60 C20 56 8 48 8 34 V16 Z' fill='%238b1a1a' stroke='%23e9dfc4' stroke-width='3'/%3E%3Cpath d='M32 18 L36.5 28 L47 28.5 L39 35 L41.5 45.5 L32 39.5 L22.5 45.5 L25 35 L17 28.5 L27.5 28 Z' fill='%23e9dfc4'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="paper" class="feel-field">
+<a class="skip" href="#cmdInput">Skip to the command bar</a>
+<div id="bannerTop" class="class-banner top" aria-hidden="true"></div>
+
+<!-- BOOT -->
+<section id="screen-boot" class="screen" aria-label="Starting up">
+  <pre id="bootLog" class="boot-log" aria-live="polite"></pre>
+  <button id="bootSkip" class="btn ghost small boot-skip" type="button">Skip ▸</button>
+</section>
+
+<!-- LOGON -->
+<section id="screen-login" class="screen hidden" aria-label="Game Master connection">
+  <div class="card login-card form-sheet">
+    <div class="stamp-row"><span class="stamp">SECRET</span><span class="form-no">FORM WS-1 · SIGNAL CENTRE</span></div>
+    <div class="insignia" id="insigniaLogin" aria-hidden="true"></div>
+    <h1 class="title">WAR STORIES</h1>
+    <p class="subtitle">CHAIN OF COMMAND · A ROLEPLAY OF WAR WITH AN AI GAME MASTER</p>
+    <p class="lede">You are a soldier. Pick the war, the army and your rank, and the Game Master builds a battle around you: the ground, the weather, the enemy and his plan, your chain of command, and the people under you by name. A squad leader lies in a ditch counting his men after every bound. A general reads reports that are six hours old and partly wrong.</p>
+    <form id="loginForm" autocomplete="off">
+      <fieldset class="api-box">
+        <legend>Game Master uplink (your own AI key)</legend>
+        <label>Provider
+          <select id="providerSelect"></select>
+        </label>
+        <label>API key
+          <input id="apiKey" type="password" placeholder="Paste your key" autocomplete="off" spellcheck="false">
+        </label>
+        <label>Model <span class="muted">(blank = the provider's default)</span>
+          <input id="modelInput" type="text" list="modelList" placeholder="" autocapitalize="off" spellcheck="false">
+          <datalist id="modelList"></datalist>
+        </label>
+        <label id="baseUrlRow">Base URL <span class="muted">(advanced)</span>
+          <input id="baseUrl" type="text" placeholder="" autocapitalize="off" spellcheck="false">
+        </label>
+        <p id="providerNotes" class="muted small"></p>
+        <label class="check"><input id="rememberKey" type="checkbox"> Remember the key in this browser (stored in localStorage; anyone using this browser profile can read it)</label>
+        <div class="row">
+          <button id="testConn" class="btn ghost" type="button">Test connection</button>
+          <button id="forgetKey" class="btn ghost" type="button">Forget stored key</button>
+          <span id="connStatus" class="muted small" role="status"></span>
+        </div>
+      </fieldset>
+      <div class="row"><button class="btn primary" type="submit">Report for duty ▸</button></div>
+    </form>
+  </div>
+</section>
+
+<!-- NEW GAME / RESUME -->
+<section id="screen-setup" class="screen hidden" aria-label="Enlistment and assignment">
+  <div class="card setup-card form-sheet">
+    <header class="card-head">
+      <span class="stamp">RESTRICTED</span>
+      <span class="form-no">FORM WS-20 · ASSIGNMENT</span>
+      <span id="setupOperator" class="muted small"></span>
+    </header>
+    <div class="two-col">
+      <form id="setupForm" novalidate>
+        <h2>Your service</h2>
+        <div class="grid2">
+          <label>Your name <input id="playerName" type="text" maxlength="40" placeholder="e.g. Jack Mercer" required></label>
+          <label>Hometown <span class="muted">(optional)</span> <input id="playerHome" type="text" maxlength="60" placeholder="e.g. Altoona, Pennsylvania"></label>
+        </div>
+        <div class="grid2">
+          <label>The war <select id="eraSelect"></select></label>
+          <label>Theatre <select id="theatreSelect"></select></label>
+        </div>
+        <label>Battle or campaign <select id="battleSelect"></select></label>
+        <div class="grid2">
+          <label>Army <select id="armySelect"></select></label>
+          <label>Branch <select id="branchSelect"></select></label>
+        </div>
+        <label>Command level <select id="echelonSelect"></select></label>
+        <label id="psgRow" class="check hidden"><input id="platoonSgt" type="checkbox"> I am the platoon sergeant, not the lieutenant</label>
+        <div id="echelonPreview" class="preview"></div>
+        <div class="grid2">
+          <label>Mode <select id="modeSelect"></select></label>
+          <label id="campaignLenRow">Campaign length <select id="campaignLen"><option value="4">4 operations</option><option value="5" selected>5 operations</option><option value="6">6 operations</option><option value="8">8 operations</option></select></label>
+        </div>
+        <div class="grid2">
+          <label>Mission <select id="missionSelect"></select></label>
+          <label>When it starts <select id="startSelect"><option value="orders" selected>Receiving orders: full planning time</option><option value="hhour">An hour before H-hour</option><option value="contact">Already in contact</option></select></label>
+        </div>
+        <div class="grid2">
+          <label>Difficulty <select id="difficultySelect"></select></label>
+          <label>Background <select id="backgroundSelect"></select></label>
+        </div>
+        <div class="grid2">
+          <label>Tone <select id="toneSelect"><option value="cinematic" selected>Cinematic: tense, restrained</option><option value="gritty">Gritty: heavier, harsher</option></select></label>
+          <label>Dice <select id="diceSelect"><option value="hidden" selected>Hidden</option><option value="shown">Shown in the log</option></select></label>
+        </div>
+        <label class="check"><input id="ironman" type="checkbox"> <span><b>Ironman</b>: no reloads. Death and losses are permanent; the game saves to the autosave slot only.</span></label>
+        <p id="difficultyNote" class="muted small"></p>
+        <div class="row">
+          <button class="btn primary" type="submit" id="beginBtn">Report to the front ▸</button>
+          <button id="genCancel" class="btn ghost small hidden" type="button">Cancel</button>
+        </div>
+        <div id="genProgress" class="progress hidden" aria-hidden="true"><div></div></div>
+        <p id="genStatus" class="muted small" role="status"></p>
+      </form>
+      <div>
+        <h2>Resume</h2>
+        <ul id="slotList" class="slot-list"></ul>
+        <div class="row">
+          <label class="btn ghost file-btn">Import a save<input id="importFile" type="file" accept="application/json,.json" hidden></label>
+          <button id="backToLogin" class="btn ghost" type="button">◂ Change AI</button>
+        </div>
+        <div class="howto small">
+          <h3>How it plays</h3>
+          <p>Type orders in your own words: <i>"Second squad, base of fire on the treeline at E6; first squad, bound left to D5 to flank the gun."</i> The game works out who heard it, how long it takes, and what happens; the Game Master tells you.</p>
+          <p>Squares on the map are named like <b>C4</b>. Tap the map to see a square; long-press it to place a control measure.</p>
+          <p>Press <b>Carry on</b> to let time run to the next thing that matters.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESKTOP -->
+<section id="screen-desktop" class="screen hidden" aria-label="Command">
+  <header class="status-strip" id="statusStrip" role="status" aria-live="off"></header>
+  <nav class="dock" id="dock" aria-label="Panels"></nav>
+  <main id="windowArea" class="window-area">
+    <div id="watermark" class="watermark" aria-hidden="true">
+      <div class="wm-insignia" id="wmInsignia"></div>
+      <div class="wm-text" id="wmText"></div>
+    </div>
+  </main>
+  <div id="contactBar" class="contact-bar hidden" role="alert">
+    <span class="contact-label">CONTACT!</span>
+    <span id="contactCount" class="contact-count"></span>
+    <div class="contact-meter"><i id="contactMeter"></i></div>
+  </div>
+  <form id="cmdBar" class="cmdbar" autocomplete="off">
+    <label for="cmdInput" class="prompt" id="cmdPrompt">ORDERS&gt;</label>
+    <input id="cmdInput" type="text" placeholder="Give orders, ask, act. e.g. '2nd squad move to D5'" spellcheck="false" autocapitalize="off" enterkeyhint="send">
+    <button class="btn small primary" type="submit" id="sendBtn">Send</button>
+    <button class="btn small" type="button" id="carryOnBtn" title="Let time run to the next decision point">Carry on ▸</button>
+  </form>
+</section>
+
+<!-- BETWEEN OPERATIONS -->
+<section id="screen-interlude" class="screen hidden" aria-label="Between operations">
+  <div id="interludeBody" class="card interlude form-sheet"></div>
+</section>
+
+<!-- AFTER-ACTION REVIEW -->
+<section id="screen-aar" class="screen hidden" aria-label="After-action review">
+  <div id="aarBody" class="card aar form-sheet"></div>
+</section>
+
+<div id="bannerBottom" class="class-banner bottom" aria-hidden="true"></div>
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<dialog id="modal" class="modal"><div id="modalBody"></div></dialog>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
