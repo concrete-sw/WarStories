@@ -1,0 +1,143 @@
+{
+  "title": "The Night They Came Through Rasdorf",
+  "codename": "COLD ANVIL",
+  "setting": {
+    "place": "the Hünfeld ridge, east of Fulda, West Germany",
+    "date": "1985-08-04",
+    "startTime": "22:00",
+    "latitude": 50.67,
+    "weather": "warm night, low cloud, ground mist in the valleys",
+    "weatherCode": "overcast",
+    "warSoFar": "Seventy-two hours ago the Warsaw Pact crossed the inner German border on a front of six hundred kilometres. The covering force of the 11th Armored Cavalry fought a delaying battle from the fence back to the Fulda and lost a third of its vehicles doing it. V Corps has had its divisions in their general defensive positions for thirty-six hours. Nobody knows whether NATO has used, or will use, nuclear weapons; the rumours change every hour. The Soviet 8th Guards Army has committed its first echelon divisions; the second echelon is somewhere behind them, moving at night. Refugees still clog the roads west. Your brigade holds the Hünfeld gap, the shortest road from the border to Fulda and the Rhine.",
+    "unitHistory": "Task Force 4-63 Infantry (Mechanized) has trained for this exact ground for four years and knows every fold of it. It lost a platoon and its scout platoon leader in the covering-force battle. The men are exhausted, the vehicles worse; the mood is grim and businesslike.",
+    "historicalOutcome": null
+  },
+  "terrain": {
+    "size": 16,
+    "base": "field",
+    "features": [
+      { "id": "f1", "name": "the Fulda river", "type": "river", "line": ["D1", "E8", "D16"] },
+      { "id": "f2", "name": "the B27", "type": "road", "line": ["P8", "K8", "H7", "D8", "A9"] },
+      { "id": "f3", "name": "the Hünfeld road", "type": "road", "line": ["P3", "J4", "F5", "A5"] },
+      { "id": "f4", "name": "Hünfeld", "type": "town", "at": "G4", "radius": 1 },
+      { "id": "f5", "name": "Rasdorf", "type": "village", "at": "N6" },
+      { "id": "f6", "name": "Burghaun", "type": "village", "at": "I11" },
+      { "id": "f7", "name": "the Haunetal woods", "type": "forest", "area": "J9:M13" },
+      { "id": "f8", "name": "the Kirchhasel woods", "type": "woods", "area": "L2:N4" },
+      { "id": "f9", "name": "the Stoppelsberg (Hill 452)", "type": "hill", "at": "J6", "radius": 2, "elevation": 3 },
+      { "id": "f10", "name": "the Hünfeld ridge", "type": "ridge", "line": ["G1", "H8", "G14"], "elevation": 2 },
+      { "id": "f11", "name": "the border road", "type": "track", "line": ["P1", "P16"] }
+    ]
+  },
+  "mission": {
+    "type": "defend",
+    "statement": "TF 4-63 defends from battle positions on the Hünfeld ridge NLT 0300 5 August to destroy the first-echelon regiment in Engagement Area VIPER and hold Hünfeld and the B27 crossing, in order to protect the brigade's counterattack across the Fulda.",
+    "higherIntent": "The brigade commander wants the enemy's first echelon broken in front of the ridge so the division's counterattack can hit his second echelon on the move. End state: Hünfeld and the B27 still ours at 1600, the enemy regiment combat ineffective.",
+    "objective": { "name": "BP HÜNFELD (the B27 crossing and the town)", "cells": ["H7", "G4"] },
+    "targetUnits": [],
+    "hHourMinutes": 300,
+    "nltMinutes": 1080,
+    "endMinutes": 1080,
+    "constraints": ["Do not withdraw west of the Fulda without the brigade commander's approval.", "The B27 bridge at E8 is the brigade's counterattack route: it stays intact."],
+    "roe": "Weapons free east of PL FLASH. Refugee columns on the B27 are not to be engaged; enemy vehicles among them are.",
+    "controlMeasures": [
+      { "type": "PL", "name": "PL FLASH", "cells": ["L1", "L16"] },
+      { "type": "EA", "name": "EA VIPER", "cells": ["J7", "K7", "J8", "K8"] },
+      { "type": "TRP", "name": "TRP 01", "cells": ["K8"] },
+      { "type": "TRP", "name": "TRP 02", "cells": ["J4"] },
+      { "type": "boundary", "name": "brigade boundary", "cells": ["A1", "P1"] }
+    ],
+    "warno": "WARNO 07. Enemy first-echelon regiment expected to attack along the B27 and the Hünfeld road from 0300. TF 4-63 defends on the Hünfeld ridge. All companies in battle positions, fighting positions dug, obstacle belts complete NLT 0230. Orders group at the TOC 2230.",
+    "opord": {
+      "situation": "Enemy: a motor rifle regiment of the 27th Guards Motor Rifle Division (two BMP battalions, one T-80 battalion) with regimental artillery, recon forward. Expect a reconnaissance probe, then an attack at 0300 behind a heavy artillery preparation and jamming; second echelon later in the day. Friendly: 2nd Brigade defends the Hünfeld gap; TF 1-41 on our south, the German Panzergrenadier brigade north. Attachments: C Company (tanks) from 2-70 Armor. Civilians: refugee traffic on the B27 all night.",
+      "mission": "TF 4-63 defends NLT 0300 to destroy the enemy in EA VIPER and hold Hünfeld and the B27 crossing.",
+      "execution": "Intent: kill his first echelon in EA VIPER from the ridge, keep his tanks off the B27, and keep the tank company for one decisive counterattack. A Company holds the B27 crossing at H7. B Company holds Hünfeld. D Company (TOW) on the Stoppelsberg shoulder at I6 covers EA VIPER. Scouts screen forward to PL FLASH and withdraw on contact. C Company (tanks) is the reserve at F6: prepare to counterattack into EA VIPER or Hünfeld. Fires: 4.2-inch mortars and the DS artillery battalion; priority to EA VIPER.",
+      "sustainment": "Basic load plus one day of ammunition on the ground at each BP. Fuel tops off at 2300. Casualties to the battalion aid station at E7; MEDEVAC by UH-60 when the air is clear. Prisoners to the brigade cage.",
+      "commandSignal": "TOC at E6; the commander moves to the hill as required. Call signs: Anvil Six (commander), Anvil Three (S3). Nets will be jammed: alternate frequencies in the SOI; runners between BPs. Succession: XO, S3."
+    },
+    "success": "Hünfeld and the B27 crossing held at 1600, the enemy regiment broken in front of the ridge.",
+    "partial": "One of the two held, or both held at the cost of the task force.",
+    "failure": "The enemy through Hünfeld or across the B27 crossing."
+  },
+  "higher": { "unit": "2nd Brigade, 3rd Armored Division", "commander": { "name": "COL Margaret Hale", "callsign": "Iron Six", "temperament": "calm, demanding, protects her commanders from division and expects results" } },
+  "friendly": {
+    "unitName": "Task Force 4-63 Infantry (Mechanized), 2nd Brigade, 3rd Armored Division",
+    "callsign": "Anvil Six",
+    "hqCell": "E6",
+    "units": [
+      { "id": "u1", "name": "A Company (mech)", "short": "A CO", "callsign": "Anvil Alpha", "type": "mech", "size": "company", "strength": 118, "vehicles": 14, "quality": "veteran", "cell": "H7", "posture": "dug_in" },
+      { "id": "u2", "name": "B Company (mech)", "short": "B CO", "callsign": "Anvil Bravo", "type": "mech", "size": "company", "strength": 112, "vehicles": 13, "quality": "regular", "cell": "G4", "posture": "dug_in" },
+      { "id": "u3", "name": "C Company (tanks)", "short": "C CO", "callsign": "Anvil Charlie", "type": "armor", "size": "company", "strength": 58, "vehicles": 14, "quality": "veteran", "cell": "F6", "posture": "halted" },
+      { "id": "u4", "name": "D Company (TOW)", "short": "D CO", "callsign": "Anvil Delta", "type": "at", "size": "company", "strength": 72, "vehicles": 12, "quality": "regular", "cell": "I6", "posture": "dug_in" },
+      { "id": "u5", "name": "Scout Platoon", "short": "SCOUTS", "callsign": "Anvil Scout", "type": "recon", "size": "platoon", "strength": 28, "vehicles": 6, "quality": "veteran", "cell": "L7", "posture": "cover" }
+    ],
+    "leaders": [
+      { "id": "L1", "unit": "u1", "name": "Dan Okafor", "rank": "CPT", "role": "A Company commander", "personality": "aggressive, brilliant, takes risks with his own life", "voice": "fast, clipped, Georgia", "competence": 5, "initiative": 5, "secret": "he has not slept in sixty hours and his hands shake", "hometown": "Savannah GA", "detail": "was your lieutenant at Fort Carson", "breakingPoint": "losing a platoon to his own mistake" },
+      { "id": "L2", "unit": "u2", "name": "Ellen Vasquez", "rank": "CPT", "role": "B Company commander", "personality": "methodical, cautious, very good at a set defence", "voice": "dry, quiet, never swears", "competence": 4, "initiative": 2, "secret": "she thinks the plan for Hünfeld cannot work and has not said so", "hometown": "Tucson AZ", "detail": "was a math teacher before OCS", "breakingPoint": "civilians dying in the town" },
+      { "id": "L3", "unit": "u3", "name": "Rick Lindqvist", "rank": "CPT", "role": "C Company (tanks) commander", "personality": "cocky tanker, wants to be let off the leash", "voice": "loud, Minnesota, laughs at the wrong moments", "competence": 3, "initiative": 4, "secret": "two of his tanks have bad fire control and he has reported them ready", "hometown": "Duluth MN", "detail": "keeps a hockey puck in his CVC helmet", "breakingPoint": "being held back while infantry dies" },
+      { "id": "L4", "unit": "u4", "name": "Walter Pruitt", "rank": "CPT", "role": "D Company (TOW) commander", "personality": "steady, old for a captain, prior enlisted", "voice": "slow Texan, calls everyone 'son'", "competence": 4, "initiative": 3, "secret": "none", "hometown": "Amarillo TX", "detail": "did two tours in Vietnam as a sergeant", "breakingPoint": "seeing the young ones panic" },
+      { "id": "L5", "unit": "u5", "name": "Sean Hurley", "rank": "1LT", "role": "Scout Platoon leader", "personality": "brave, green, replaced the scout platoon leader killed on the border", "voice": "eager, Boston, talks too much on the radio", "competence": 2, "initiative": 4, "secret": "he froze for a minute on the border and nobody saw", "hometown": "Quincy MA", "detail": "wants to prove he belongs", "breakingPoint": "losing a vehicle crew" }
+    ],
+    "notables": [],
+    "staff": [
+      { "role": "XO", "name": "Gary Whitlock", "personality": "unflappable organiser, the battalion's memory", "voice": "flat Midwestern, lists", "opinion": "commit the tanks early, before the artillery cuts the roads", "competence": 4 },
+      { "role": "S2", "name": "Priya Raman", "personality": "precise, cautious about confidence levels", "voice": "careful qualifiers, 'probable', 'possible'", "opinion": "the main effort is the B27, not Hünfeld; the woods report is too convenient", "competence": 4 },
+      { "role": "S3", "name": "Tom Brandt", "personality": "aggressive planner, impatient with the S2", "voice": "loud, maps everything", "opinion": "the attack comes through Hünfeld: the town is the key", "competence": 3 },
+      { "role": "S4", "name": "Luis Ortega", "personality": "worrier, always right about fuel", "voice": "numbers and complaints", "opinion": "we cannot fight more than twelve hours without resupply", "competence": 4 },
+      { "role": "FSO", "name": "Kim Sorensen", "personality": "cheerful gunner, loves a fire plan", "voice": "brisk, technical", "opinion": "mass everything on EA VIPER and accept the risk in the town", "competence": 4 },
+      { "role": "Chaplain", "name": "Father Joseph Mbeki", "personality": "quiet, goes where the wounded are", "voice": "gentle, unhurried", "opinion": "the men are frightened of chemicals more than anything", "competence": 3 },
+      { "role": "Driver", "name": "Kevin Duffy", "personality": "nineteen, knows every track on the ridge", "voice": "nervous jokes", "opinion": "the TOC is too close to the bridge", "competence": 3 }
+    ],
+    "adjacent": [ { "name": "TF 1-41 Infantry", "where": "south", "callsign": "Saber Six" }, { "name": "Panzergrenadierbrigade 14", "where": "north", "callsign": "Falke" } ],
+    "support": [
+      { "id": "a1", "type": "mortar", "name": "task force 4.2-inch mortars", "callsign": "Anvil Mortars", "missions": 8, "availableFromMinutes": 0, "availableToMinutes": 1500, "responseMinutes": 4 },
+      { "id": "a2", "type": "artillery", "name": "2-3 Field Artillery (155 mm)", "callsign": "Thunder", "missions": 6, "availableFromMinutes": 0, "availableToMinutes": 1500, "responseMinutes": 6 },
+      { "id": "a3", "type": "helicopter", "name": "Cobra attack helicopter company", "callsign": "Viper Lead", "missions": 2, "availableFromMinutes": 360, "availableToMinutes": 1500, "responseMinutes": 25 },
+      { "id": "a4", "type": "air", "name": "A-10 close air support", "callsign": "Hog Two-One", "missions": 2, "availableFromMinutes": 600, "availableToMinutes": 1500, "responseMinutes": 30 }
+    ]
+  },
+  "enemy": {
+    "description": "A motor rifle regiment of the 27th Guards Motor Rifle Division: two BMP-2 battalions, a T-80 battalion, regimental artillery and a reconnaissance company. Well equipped, tired, under orders to reach the Fulda by noon.",
+    "commander": { "name": "Polkovnik Arkady Volkov", "temperament": "aggressive and impatient, afraid of his own division commander", "mistake": "he commits his tank battalion straight down the B27 into EA VIPER at dawn instead of following his motor rifles through Hünfeld" },
+    "intent": "Break through on the B27 to the Fulda crossing by noon so the second echelon can pass through.",
+    "plan": "Reconnaissance probes the ridge after midnight. At 0300, behind artillery and jamming, one BMP battalion attacks the B27 crossing and the other attacks Hünfeld as a fixing attack; the tank battalion follows whichever succeeds. A dummy tank company in the Kirchhasel woods and a prisoner briefed to lie point at Hünfeld. The second echelon battalion arrives around 1000.",
+    "units": [
+      { "id": "e1", "name": "1st Motor Rifle Battalion (BMP-2)", "type": "mech", "size": "battalion", "strength": 410, "vehicles": 31, "quality": "regular", "cell": "O7", "posture": "halted", "decoy": false, "reaction": "hold", "fallback": "P8", "orders": [ { "atMinutes": 0, "task": "halt", "target": "O7" }, { "atMinutes": 300, "task": "assault", "target": "H7" } ] },
+      { "id": "e2", "name": "2nd Motor Rifle Battalion (BMP-2)", "type": "mech", "size": "battalion", "strength": 395, "vehicles": 30, "quality": "regular", "cell": "O4", "posture": "halted", "decoy": false, "reaction": "delay", "fallback": "P3", "orders": [ { "atMinutes": 0, "task": "halt", "target": "O4" }, { "atMinutes": 300, "task": "assault", "target": "G4" } ] },
+      { "id": "e3", "name": "Tank battalion (T-80)", "type": "armor", "size": "battalion", "strength": 125, "vehicles": 40, "quality": "veteran", "cell": "P9", "posture": "halted", "decoy": false, "reaction": "counterattack", "fallback": "P9", "orders": [ { "atMinutes": 0, "task": "halt", "target": "P9" }, { "atMinutes": 420, "task": "assault", "target": "H7" } ] },
+      { "id": "e4", "name": "Reconnaissance company (BRDM-2)", "type": "recon", "size": "company", "strength": 64, "vehicles": 12, "quality": "veteran", "cell": "N8", "posture": "cover", "decoy": false, "reaction": "withdraw", "fallback": "O9", "orders": [ { "atMinutes": 60, "task": "recon", "target": "K7" }, { "atMinutes": 220, "task": "withdraw", "target": "N9" } ] },
+      { "id": "e5", "name": "Regimental artillery group (2S1, 2S3)", "type": "artillery", "size": "battalion", "strength": 300, "vehicles": 24, "quality": "regular", "cell": "P13", "posture": "dug_in", "decoy": false, "reaction": "hold", "fallback": null, "orders": [ { "atMinutes": 0, "task": "defend", "target": "P13" } ] },
+      { "id": "e6", "name": "tank company in the Kirchhasel woods", "type": "armor", "size": "company", "strength": 0, "quality": "regular", "cell": "M3", "posture": "cover", "decoy": true, "reaction": "hold", "fallback": null, "orders": [] },
+      { "id": "e7", "name": "3rd Motor Rifle Battalion (second echelon)", "type": "mech", "size": "battalion", "strength": 400, "vehicles": 31, "quality": "regular", "cell": "P6", "posture": "moving", "decoy": false, "reinforcement": true, "reaction": "hold", "fallback": "P6", "orders": [ { "atMinutes": 720, "task": "assault", "target": "G4" } ] }
+    ]
+  },
+  "people": [
+    { "id": "c1", "name": "refugees on the B27", "kind": "civilian", "cell": "J8", "count": 200, "description": "families in cars, tractors and on foot, heading west", "knows": "that Soviet tanks were in Rasdorf at dusk", "wants": "to cross the Fulda" },
+    { "id": "c2", "name": "Bürgermeister Klaus Wendt", "kind": "official", "cell": "G4", "count": 1, "description": "the mayor of Hünfeld, who refuses to leave", "knows": "where the town's cellars and the gas main are", "wants": "his town not to be destroyed" }
+  ],
+  "events": [
+    { "atMinutes": 90, "kind": "comms", "text": "Every net fills with a rising electronic howl: Soviet jamming.", "visible": true, "urgent": true, "effects": { "jamming": true } },
+    { "atMinutes": 200, "kind": "comms", "text": "The scout platoon's radio goes silent after a burst of artillery near Rasdorf.", "visible": true, "urgent": true, "effects": { "comms": { "unit": "u5", "state": "down" } } },
+    { "atMinutes": 240, "kind": "civilian", "text": "A column of refugees fills the B27 heading for the bridge, headlights off.", "visible": true, "urgent": false, "effects": { "civilians": { "cell": "J8", "count": 200, "name": "refugees on the B27" } } },
+    { "atMinutes": 330, "kind": "higher", "text": "Iron Six: hold Hünfeld and the crossing until 1600 at the least; the division counterattack is delayed by refugees on the autobahn.", "visible": true, "urgent": true, "effects": {} },
+    { "atMinutes": 600, "kind": "weather", "text": "The ground mist burns off; the valley opens up in daylight.", "visible": true, "urgent": false, "effects": { "weather": "clear" } },
+    { "atMinutes": 700, "kind": "enemy", "text": "Brigade warns: a second-echelon battalion is moving through Rasdorf.", "visible": true, "urgent": true, "effects": { "spawnEnemy": "e7", "spawnCell": "P6" } },
+    { "atMinutes": 900, "kind": "comms", "text": "The jamming stops as suddenly as it began.", "visible": true, "urgent": false, "effects": { "jamming": false } }
+  ],
+  "intel": [
+    { "atMinutes": 0, "source": "higher", "reliability": "B2", "text": "Two motor rifle battalions and a tank battalion of the 27th Guards MRD assembling east of the border opposite Rasdorf.", "about": "e1", "cell": "O7", "truthful": true },
+    { "atMinutes": 0, "source": "air recon", "reliability": "C3", "text": "A tank company reported in the Kirchhasel woods at M3.", "about": "e6", "cell": "M3", "truthful": false },
+    { "atMinutes": 150, "source": "intercept", "reliability": "B3", "text": "Radio intercept: enemy artillery registering on the Stoppelsberg.", "about": null, "cell": null, "truthful": true },
+    { "atMinutes": 400, "source": "prisoner", "reliability": "D4", "text": "A captured reconnaissance soldier says the main attack goes north through Hünfeld.", "about": "e2", "cell": "G4", "truthful": false }
+  ],
+  "deceptions": [
+    "The tank company in the Kirchhasel woods is a dummy: inflatable decoys and a few radio transmitters.",
+    "The prisoner was briefed to name Hünfeld; the main effort is the B27 crossing.",
+    "The attack on Hünfeld is a fixing attack to pull the tank reserve north."
+  ],
+  "complications": [
+    "Jamming from 0130 makes every net unreliable.",
+    "Refugees on the B27 in EA VIPER.",
+    "C Company has two tanks with faulty fire control reported as ready."
+  ]
+}
